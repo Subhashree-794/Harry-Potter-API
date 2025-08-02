@@ -231,11 +231,11 @@
             <li><a href="houses.html">Houses</a></li>
             <li><a href="character.html">Characters</a></li>
             <li><a href="spell.html">Spells</a></li>
-            <li><a href="book.html">Books</a></li>
+            <li><a href="book.html">Books</a></li>            
         </ul>
     </nav>
     <h1>Hogwarts Houses</h1>
-    <div id="cards-container"></div>
+    <div id="cards-container"></div>            
 
     <div class="footer">
         <div class="social">
@@ -257,10 +257,10 @@
         ];
 
         const houseImages = {
-            Gryffindor: "Pics/house/1.png",
-            Hufflepuff: "Pics/house/2.png",
-            Ravenclaw: "Pics/house/3.png",
-            Slytherin: "Pics/house/4.png"
+            Gryffindor: "Pics/assets/Gryffindor.jpg",
+            Hufflepuff: "Pics/assets/huf.jpeg",
+            Ravenclaw: "Pics/assets/raven.jpeg",
+            Slytherin: "Pics/assets/sly.png"
         };
 
         const container = document.getElementById('cards-container');
@@ -272,7 +272,7 @@
             card.innerHTML = `
             <div class="card-inner">
                 <div class="card-front ${house.name}">
-                    <img src="${houseImages[house.name] || 'default.jpg'}" alt="${house.name}">
+                    <img src="${houseImages[house.name]}" alt="${house.name}">
                     <div class="house-name">${house.name}</div>
                     
                     </div>
