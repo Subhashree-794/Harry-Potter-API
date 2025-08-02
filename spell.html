@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Harry Potter Spell Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #00001b;
+            color: white;
+            margin: 0;
+        }
+
+        #star-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: rgb(212, 211, 251);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+
+        nav {
+            background-color: #00001b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            color: #febc21;
+            font-weight: 700;
+            top: 0;
+            font-family: "Crimson Pro", serif;
+        }
+
+        ul {
+            margin-right: 2rem;
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            font-size: 1.5rem;
+        }
+
+        ul li a {
+            padding: 10px;
+            transition: transform 0.5s, background-color 0.5s, color 0.5s ease-in-out;
+            border-radius: 60px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #febc21;
+        }
+
+        ul li:hover a {
+            transition: all 0.5s ease-in-out;
+            transform: scale(1.05);
+            background-color: #febc21;
+            color: #00001b;
+        }
+
+        .logo img {
+            width: 10vw;
+        }
+
+        .txt {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        h1 {
+            margin-bottom: 70px;
+            font-size: 3rem;
+            color: #febc21;
+        }
+
+        .spell-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            perspective: 1000px;
+            width: 100%;
+            height: 180px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card:hover .card-inner,
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            backdrop-filter: blur(4px);
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 12px;
+            border: none;
+        }
+
+        .card-front {
+            background-color: #020216;
+            border-radius: 20px;
+            border: 1px solid white;
+            font-size: 2rem;
+            font-weight: 500;
+            text-align: center;
+            font-family: "Crimson Pro", serif;
+        }
+
+        .card-back {
+            background-color: #febc21;
+            color: #00001b;
+            transform: rotateY(180deg);
+            font-weight: normal;
+            font-size: 1.3rem;
+            text-align: center;
+            font-family: "Crimson Pro", serif;
+        }
+
+        .footer {
+            margin-top: 60px;
+            margin-bottom: 15px;
+            background-color: #00001b;
+            color: white;
+            height: 15vh;
+            color: rgb(212, 211, 251);
+            text-align: center;
+        }
+
+        .social a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 3rem;
+            height: 3rem;
+            border: 0.2rem solid rgb(212, 211, 251);
+            font-size: 1.5rem;
+            border-radius: 50%;
+            margin: 2rem 1.2rem 0 0;
+            color: rgb(212, 211, 251);
+            text-decoration: none;
+            transition: background 0.7s, color 0.7s, transform 0.7s ease-in-out;
+        }
+
+        .social a:hover {
+            color: #00001b;
+            background-color: rgb(212, 211, 251);
+            box-shadow: 0 0 10px rgb(212, 211, 251);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="star-container"></div>
+    <nav>
+        <div class="logo">
+            <img src="Pics/logo.png" alt="">
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="houses.html">Houses</a></li>
+            <li><a href="character.html">Characters</a></li>
+            <li><a href="spell.html">Spells</a></li>
+            <li><a href="book.html">Books</a></li>
+        </ul>
+    </nav>
+    <div class="txt">
+        <h1>WIZARDING SPELLS</h1>
+        <div class="spell-grid" id="spellGrid"></div>
+        <div class="footer">
+            <div class="social">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <p>©HarryPotter. All Rights Reserved</p>
+        </div>
+
+
+    </div>
+
+    <script src="star.js"></script>
+    <script>
+        const spells = [
+            {
+                name: "Accio",
+                description: "Summons objects toward the caster. Used by Harry to grab his broom in the Triwizard Tournament."
+            },
+            {
+                name: "Expelliarmus",
+                description: "Disarms the opponent. Harry's signature spell to disarm enemies instead of harming them."
+            },
+            {
+                name: "Lumos",
+                description: "Lights up the wand's tip. Hermione uses it often while studying late nights in Hogwarts."
+            },
+            {
+                name: "Alohomora",
+                description: "Unlocks doors and objects. Frequently used by Hermione to get out of trouble."
+            },
+            {
+                name: "Expecto Patronum",
+                description: "Conjures a protective Patronus. Harry’s stag Patronus protects against Dementors."
+            },
+            {
+                name: "Wingardium Leviosa",
+                description: "Makes objects fly. Ron mastered it with the feather in Professor Flitwick's class."
+            },
+            {
+                name: "Avada Kedavra",
+                description: "The killing curse. Used by Voldemort—instantly fatal and unblockable."
+            },
+            {
+                name: "Stupefy",
+                description: "Stuns the opponent. Used in battles to immobilize Death Eaters quickly."
+            },
+            {
+                name: "Protego",
+                description: "Shields against minor spells. Hermione and Harry often use it during duels."
+            },
+            {
+                name: "Obliviate",
+                description: "Erases specific memories. Hermione used it on her parents to protect them from Voldemort."
+            },
+            {
+                name: "Rictusempra",
+                description: "The tickling charm. Harry used it during his dueling practice to weaken opponents with laughter."
+            },
+            {
+                name: "Sectumsempra",
+                description: "A dark curse causing deep cuts. Discovered by Harry in Snape’s textbook, used against Draco by accident."
+            }
+        ];
+
+        const grid = document.getElementById("spellGrid");
+
+        spells.forEach(spell => {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `
+    <div class="card-inner">
+      <div class="card-face card-front">${spell.name}</div>
+      <div class="card-face card-back">${spell.description}</div>
+    </div>
+  `;
+
+            card.addEventListener("click", () => {
+                card.classList.toggle("flipped");
+            });
+
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Characters</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center;
+            overflow-x: hidden;
+            background-color: #00001b;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #star-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: rgb(212, 211, 251);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        nav {
+            background-color: #00001b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            color: #febc21;
+            font-weight: 700;
+            top: 0;
+            font-family: "Crimson Pro", serif;
+        }
+
+        ul {
+            margin-right: 2rem;
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            font-size: 1.5rem;
+        }
+
+        ul li a {
+            padding: 10px;
+            transition: transform 0.5s, background-color 0.5s, color 0.5s ease-in-out;
+            border-radius: 60px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #febc21;
+        }
+
+        ul li:hover a {
+            transition: all 0.5s ease-in-out;
+            transform: scale(1.05);
+            background-color: #febc21;
+            color: #00001b;
+        }
+
+        .logo img {
+            width: 10vw;
+        }
+
+        h1 {
+            font-family: "Cinzel", serif;
+            color: #febc21;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            place-items: center;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .flip-card {
+            position: relative;
+            background-color: transparent;
+            width: 220px;
+            height: 320px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            backface-visibility: hidden;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .flip-card-front {
+            background: transparent;
+        }
+
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flip-card-front h1 {
+            padding: 10px;
+            font-size: 1.2rem;
+            color: #443b3b;
+        }
+
+        .flip-card-back {
+            background: #282c34;
+            color: rgb(240, 240, 243);
+
+            box-sizing: border-box;
+            transform: rotateY(180deg);
+            padding: 20px;
+            gap: 10px;
+        }
+
+        .flip-card-back h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .character-label {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 11px 0;
+            text-align: center;
+            background-color: transparent;
+            font-size: 1.1rem;
+            font-weight: bold;
+            font-family: "Crimson Pro", serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: transparent;
+            color: rgb(240, 240, 243);
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 60px;
+            margin-bottom: 15px;
+            background-color: #00001b;
+            color: white;
+            height: 15vh;
+            color: rgb(212, 211, 251);
+            text-align: center;
+        }
+
+        .social {
+            padding-bottom: 20px;
+        }
+
+        .social a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 2rem;
+            height: 2rem;
+            border: 0.2rem solid rgb(212, 211, 251);
+            font-size: 1.3rem;
+            border-radius: 50%;
+            margin: 2rem 1.2rem 0 0;
+            color: rgb(212, 211, 251);
+            text-decoration: none;
+            transition: background 0.7s, color 0.7s, transform 0.7s ease-in-out;
+        }
+
+        .social a:hover {
+            color: #00001b;
+            background-color: rgb(212, 211, 251);
+            box-shadow: 0 0 10px rgb(212, 211, 251);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="star-container"></div>
+
+    <nav>
+        <div class="logo">
+            <img src="Pics/logo.png" alt="">
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="houses.html">Houses</a></li>
+            <li><a href="character.html">Characters</a></li>
+            <li><a href="spell.html">Spells</a></li>
+            <li><a href="book.html">Books</a></li>
+        </ul>
+    </nav>
+
+    <h1>Harry Potter Characters</h1>
+    <div id="character-list" class="container character-grid"></div>
+
+    <div class="footer">
+        <div class="social">
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p>©HarryPotter. All Rights Reserved</p>
+    </div>
+
+    <script src="star.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const characterList = document.getElementById("character-list");
+
+            fetch("https://potterapi-fedeperin.vercel.app/en/characters")
+                .then((response) => response.json())
+                .then((characters) => {
+                    console.log("Characters fetched:", characters);
+                    displayCharacterList(characters);
+                })
+                .catch((error) => {
+                    console.error("Failed to load characters:", error);
+                });
+
+            function getDisplayName(character) {
+                if (character.fullName && character.fullName.trim() !== "") {
+                    return character.fullName.trim();
+                }
+                return "Unknown";
+            }
+
+            function displayCharacterList(characters) {
+                characters.forEach((character) => {
+                    const characterDiv = document.createElement("div");
+                    characterDiv.className = "flip-card";
+
+                    const displayName = getDisplayName(character);
+
+                    characterDiv.innerHTML = `
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="image-wrapper">
+              <img src="${character.image ||
+                        "https://cdni.iconscout.com/illustration/premium/thumb/magic-hat-8135983-6493249.png"
+                        }" alt="${displayName}" />
+              <div class="character-label">${displayName}</div> 
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h2>${displayName}</h2>
+            <p><strong>House:</strong> ${character.hogwartsHouse || "Unknown"
+                        }</p>
+            <p><strong>Nickname:</strong> ${character.nickname || "Unknown"}</p>
+            <p><strong>BirthDate:</strong> ${character.birthdate || "Unknown"}</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+
+                    characterList.appendChild(characterDiv);
+                });
+            }
+
+        });
+    </script>
+</body>
+
+</html>
